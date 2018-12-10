@@ -1,23 +1,33 @@
+/**
+ * Galaxy Class
+ * This class is responsible for representing a Galaxy
+ */
 import { Star } from './Star';
 
 export class Galaxy {
-  public stars: Star[] = [];
-  private _numStars: number;
-  public isDrawn: boolean = false;
+  public stars: Star[] = []; //The array of stars in this Galaxy
+  private _numStars: number; //The number of stars in this Galaxy
+  public isDrawn: boolean = false; //If this Galaxy is drawn or not
 
+  //numStart(): number => returns the number of stars in this Galaxy
   get numStars() {
     return this._numStars;
   }
 
+  //Constructor
   constructor(numStars: number) {
+    //Set the number of desired stars
     this._numStars = numStars;
 
+    //For every desired star, create a new star
     for (let i = 0; i < this._numStars; i++) {
       this.stars[i] = new Star(('star ' + i) as string);
     }
   }
 
+  //draw(HTMLElement): void => this function draws the stars in thie given element
   public draw(el: HTMLElement) {
+    //If already drawn
     if (this.isDrawn) {
       //Generate a new array of stars
       for (let i = 0; i < this._numStars; i++) {
@@ -65,6 +75,7 @@ export class Galaxy {
 
     }*/
 
+    //Set isDrawn to true, since we just drew stars
     this.isDrawn = true;
   }
 }

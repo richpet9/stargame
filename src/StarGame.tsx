@@ -1,3 +1,8 @@
+/**
+ * This whole class is currently unused and was just
+ * experimentation, but I'm afraid to remove it because
+ * it has some good stuff.
+ */
 import { Galaxy } from './Galaxy';
 
 export class StarGame {
