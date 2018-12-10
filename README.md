@@ -1,7 +1,7 @@
 # Stargame
 A game, of sorts, using DOM Nodes and TypeScript
 
-### Dependancies
+### Dependancies:
 - webpack:      `^6.4.1`, *(not in package.json)*
 - webpack-cli:  `^6.4.1`, *(not in package.json)*
 - typescript: `^3.2.2`,
@@ -9,3 +9,6 @@ A game, of sorts, using DOM Nodes and TypeScript
 
 ### Live version: 
 not yet deployed
+
+#### Note:
+The `dist/` directory has had the minified webpack bundles excluded from this repo. To reproduce, use the given webpack.config.js and build the project.
