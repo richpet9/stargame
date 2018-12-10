@@ -1,0 +1,20 @@
+{
+  "name": "stargame",
+  "version": "1.0.0",
+  "description": "star game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js --mode=production",
+    "build:dev": "webpack --config webpack.config.js --mode=development",
+    "watch": "webpack --config webpack.config.js --mode=development --watch",
+    "start": "node server.js"
+  },
+  "author": "Richard Petrosino",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "typescript": "^3.2.2"
+  }
+}
