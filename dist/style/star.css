@@ -1,0 +1,30 @@
+div.star {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0);
+  position: absolute;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+}
+
+div.star::after {
+  content: '';
+  cursor: pointer;
+  background: white;
+  position: absolute;
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  top: calc(50% - 2px);
+  left: calc(50% - 2px);
+}
+svg {
+  position: absolute;
+}
+svg line {
+  stroke: rgb(255, 255, 255, 0.5);
+  stroke-width: 1;
+}
