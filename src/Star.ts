@@ -11,7 +11,6 @@ export class Star {
   private _y: number; //The y location of this Star
   private size: number; //The radius of the star
   private planets: Planet[] = []; //The array of planets orbiting this star
-  //TODO: Add an array of planets! (and a planeet class)
 
   //x(): number => returns the x location
   get x() {
