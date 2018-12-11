@@ -8,7 +8,7 @@ A game, of sorts, using DOM Nodes and TypeScript
 - awesome-typescript-loader: `^5.2.1`
 
 ### Live version: 
-not yet deployed
+[stargame.richardpetrosino.com](https://stargame.richardpetrosino.com/)
 
 #### Note:
 The `dist/` directory has had the minified webpack bundles excluded from this repo. To reproduce, use the given webpack.config.js and build the project.
