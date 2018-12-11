@@ -7,7 +7,7 @@ const generate = document.getElementById('generate'); //The generate button
 //TypeScript can be annoying
 if (starContainer) {
   //Create the Galaxy
-  const galaxy = new Galaxy(10);
+  const galaxy = new Galaxy(100);
 
   //Again, TypeScript can be annoying
   if (generate) {

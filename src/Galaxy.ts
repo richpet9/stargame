@@ -5,7 +5,7 @@
 import { Star } from './Star';
 
 export class Galaxy {
-  public stars: Star[] = []; //The array of stars in this Galaxy
+  private stars: Star[] = []; //The array of stars in this Galaxy
   private _numStars: number; //The number of stars in this Galaxy
   public isDrawn: boolean = false; //If this Galaxy is drawn or not
 
@@ -21,7 +21,7 @@ export class Galaxy {
 
     //For every desired star, create a new star
     for (let i = 0; i < this._numStars; i++) {
-      this.stars[i] = new Star(('star ' + i) as string);
+      this.stars[i] = new Star(('star ' + i) as string, Math.random() * 100 + 25);
     }
   }
 
@@ -31,7 +31,7 @@ export class Galaxy {
     if (this.isDrawn) {
       //Generate a new array of stars
       for (let i = 0; i < this._numStars; i++) {
-        this.stars[i] = new Star(('star ' + i) as string);
+        this.stars[i] = new Star(('star ' + i) as string, Math.random() * 100 + 25);
       }
 
       //Destroy existing stars
@@ -42,7 +42,7 @@ export class Galaxy {
 
     //Redraw every star
     this.stars.forEach(star => {
-      star.draw(el);
+      star.draw(this.stars);
     });
 
     //Draw connecting lines
