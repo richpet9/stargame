@@ -1,5 +1,5 @@
 /* This document is for styling the stars */
-#star-container {
+#galaxy-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@
   z-index: 1;
 }
 div.star {
-  display: inline-block;
+  display: block;
   background: rgba(255, 255, 255, 0);
   position: absolute;
   cursor: pointer;
@@ -31,7 +31,18 @@ div.star::after {
   left: calc(50% - 2px);
 }
 
-div.star:hover,
-div.star:focus {
+div.star-label {
+  position: absolute;
+  color: white;
+  display: none;
+}
+
+div.starContainer:hover > .star,
+div.starContainer:focus > .star {
   border: 2px solid rgb(255, 241, 41);
+}
+
+div.starContainer:hover > div.star-label,
+div.starContainer:focus > div.star-label {
+  display: block;
 }

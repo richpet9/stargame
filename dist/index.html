@@ -10,9 +10,16 @@
   </head>
   <body>
     <!-- Container for the star field -->
-    <div id="star-container"></div>
+    <div id="galaxy-container"></div>
     <!-- Container for the planet/star system screen -->
-    <div id="planet-container"></div>
+    <div id="planet-container">
+      <div class="system-col spacer"></div>
+      <div class="system-col star-col" id="center-star-container"></div>
+      <div class="system-col" id="planet-0-container"></div>
+      <div class="system-col" id="planet-1-container"></div>
+      <div class="system-col" id="planet-2-container"></div>
+      <div class="system-col" id="planet-3-container"></div>
+    </div>
     <!-- Container for the controls at the bottom -->
     <div id="controls"><input type="button" id="generate" class="button" value="generate stars" /></div>
     <script src="main.bundle.js"></script>

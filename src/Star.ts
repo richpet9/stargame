@@ -9,7 +9,8 @@ export class Star {
   public name: string; //The name of this Star
   private _x: number; //The x location of this Star
   private _y: number; //The y location of this Star
-  private size: number; //The radius of the star
+  private size: number; //The radius of the star (25 - 100px)
+  private numPlanets: number; //The number of planets
   private planets: Planet[] = []; //The array of planets orbiting this star
 
   //x(): number => returns the x location
@@ -34,10 +35,13 @@ export class Star {
     //Set size
     this.size = size;
     //Set the planets
-    this.planets.push(new Planet(name, 0));
+    this.numPlanets = Math.floor(Math.random() * 5);
+    for (let i = 0; i < this.numPlanets; i++) {
+      this.planets[i] = new Planet(this.name + ' ' + i, i);
+    }
   }
 
-  //showStar(HTMLElement): void => opens this Star system view and draws planets
+  //showStarSystem(): void => opens this Star system view and draws planets
   public showStarSystem() {
     //First, draw the center star
     //Create the element
@@ -45,17 +49,16 @@ export class Star {
 
     //Set attributes
     starEl.className = 'planet';
-    starEl.id = 'planet';
+    starEl.id = 'center-star';
     starEl.innerHTML = this.name;
 
     //Set position
-    starEl.style.top = 'calc(50% - ' + this.size / 2 + 'px)';
-    starEl.style.left = 'calc(50% - ' + this.size / 2 + 'px)';
     starEl.style.width = this.size + 'px';
     starEl.style.height = this.size + 'px';
+    starEl.style.top = 'calc(50% - ' + this.size / 2 + 'px)';
 
-    //Query the planet container
-    const container = document.getElementById('planet-container');
+    //Query the center star container
+    const container = document.getElementById('center-star-container');
 
     //TypeScript is annoying
     if (container) {
@@ -63,8 +66,22 @@ export class Star {
       while (container.firstChild) {
         container.removeChild(container.firstChild);
       }
-      //Append the planet element
+      //Append the star element
       container.appendChild(starEl);
+
+      //Before we render the planets, empty their containers
+      for (let i = 0; i < 5; i++) {
+        //Query container
+        const planetContainer = document.getElementById('planet-' + i + '-container');
+
+        //I love TypeScript!
+        if (planetContainer) {
+          //Empty the container
+          while (planetContainer.firstChild) {
+            planetContainer.removeChild(planetContainer.firstChild);
+          }
+        }
+      }
 
       //Then render the planets
       this.planets.forEach(planet => {
@@ -76,21 +93,32 @@ export class Star {
       exitStarSystemEl.innerHTML = 'X';
       exitStarSystemEl.className = 'exit-button';
 
-      //Add the exit button
-      container.appendChild(exitStarSystemEl);
+      //Finally, get the star system container
+      const systemContainer = container.parentElement;
 
-      //Finally, show the container
-      container.style.display = 'block';
+      //TypeScript being fun
+      if (systemContainer) {
+        //Show the star system screen
+        systemContainer.style.display = 'flex';
 
-      //When we click exit, set the display back to none
-      exitStarSystemEl.onclick = e => {
-        e.preventDefault;
-        container.style.display = 'none';
+        //Add the exit button
+        systemContainer.appendChild(exitStarSystemEl);
+
+        //When we click exit, set the display back to none
+        exitStarSystemEl.onclick = e => {
+          e.preventDefault;
+          systemContainer.style.display = 'none';
+        };
+      }
+
+      //DEBUG: When we click the star get some info
+      starEl.onclick = e => {
+        console.log(this.name, 'size: ' + this.size, 'x: ' + this._x, 'y: ' + this._y, this.planets);
       };
     }
   }
 
-  //draw(HTMLElement): void => draws the Star in the given Galaxy element container
+  //draw(Star[]): void => draws the Star in the given Galaxy element container
   public draw(stars: Star[]): void {
     //First, check each star for a collision
     for (let i = 0; i < stars.length; i++) {
@@ -111,8 +139,6 @@ export class Star {
       }
     }
 
-    const container = document.getElementById('star-container');
-
     //Create the element for this Star
     const starContainer = document.createElement('div');
     const starEl = document.createElement('div');
@@ -122,14 +148,28 @@ export class Star {
     starEl.className = 'star';
     starEl.id = this.name.replace(' ', '-');
 
+    //Set label element
+    starLabel.className = 'star-label';
+    starLabel.innerHTML = this.name + '<br />planets: ' + this.numPlanets;
+
+    //TODO: REALLY DO CHANGE THIS
+    starContainer.className = 'starContainer';
+
     //Set location and size
     starEl.style.left = this._x + 'px';
     starEl.style.top = this._y + 'px';
 
+    //Add the elements to the container
+    starContainer.appendChild(starEl);
+    starContainer.appendChild(starLabel);
+
+    //Query the container
+    const container = document.getElementById('galaxy-container');
+
     //TypeScript being annoying
     if (container) {
       //Append this Star to the container
-      container.appendChild(starEl);
+      container.appendChild(starContainer);
     }
 
     //On click the Star, show the Star System
@@ -138,7 +178,7 @@ export class Star {
     };
   }
 
-  //checkCollision(): boolean => checks if a star is colliding,
+  //checkCollision(Star): boolean => checks if a star is colliding,
   //returns true and sets new location if so
   private checkCollision(star: Star): boolean {
     //Get the difference in locations

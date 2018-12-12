@@ -1,7 +1,7 @@
 import { Galaxy } from './Galaxy';
 
 //Get the DOM elements we need to reference
-const starContainer = document.getElementById('star-container'); //Star container
+const starContainer = document.getElementById('galaxy-container'); //Star container
 const generate = document.getElementById('generate'); //The generate button
 
 //TypeScript can be annoying

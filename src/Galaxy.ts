@@ -21,7 +21,7 @@ export class Galaxy {
 
     //For every desired star, create a new star
     for (let i = 0; i < this._numStars; i++) {
-      this.stars[i] = new Star(('star ' + i) as string, Math.random() * 100 + 25);
+      this.stars[i] = new Star(('star ' + i) as string, Math.random() * 75 + 25);
     }
   }
 
@@ -31,7 +31,7 @@ export class Galaxy {
     if (this.isDrawn) {
       //Generate a new array of stars
       for (let i = 0; i < this._numStars; i++) {
-        this.stars[i] = new Star(('star ' + i) as string, Math.random() * 100 + 25);
+        this.stars[i] = new Star(('star ' + i) as string, Math.random() * 75 + 25);
       }
 
       //Destroy existing stars
